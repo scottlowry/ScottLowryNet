@@ -72,7 +72,16 @@
     <h1>Scott Lowry</h1>
     <p>
       Springfield, OR<br />
-      <a href="/cdn-cgi/l/email-protection#f2a1919d8686b2a1919d8686be9d85808bdc9c9786"><span class="__cf_email__" data-cfemail="f1a2929e8585b1a2929e8585bd9e868388df9f9485">[email&#160;protected]</span></a> | <a href="https://www.linkedin.com/in/scott-m-lowry/" target="_blank">LinkedIn</a>
+      <a id="email-link" href="#">[email protected]</a>
+      <script>
+        const user = "scott";
+        const domain = "lowry.net";
+        const email = `${user}@${domain}`;
+        const link = document.getElementById("email-link");
+        link.href = `mailto:${email}`;
+        link.textContent = email;
+      </script>
+      | <a href="https://www.linkedin.com/in/scott-m-lowry/" target="_blank">LinkedIn</a>
     </p>
   </div>
 </div>
@@ -152,5 +161,5 @@
   <footer style="margin-top: 60px; font-size: 0.9em; color: #777; text-align: center; border-top: 1px solid #ccc; padding-top: 20px;">
     <p>This site is hosted using <strong>Azure Static Pages</strong>.</p>
   </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</body>
 </html>
