@@ -30,7 +30,7 @@ I create 2 files:
 
 I use JSON because it allows ChatGPT to precisely parse data.
 
-#### CV.json
+### CV.json
 
 Put as much information as you can for ChatGPT to draw from. Modify the JSON however you want by adding/removing fields. Use ChatGPT to help if you're not familiar with JSON. 
 
@@ -122,7 +122,7 @@ JSON example:
 }
 ```
 
-#### prompt.json
+### prompt.json
 
 Anyone experienced with AI knows it can hallucinate so this is to prevent that. This is also where you can give it precise instructions on how to format the resume. 
 
