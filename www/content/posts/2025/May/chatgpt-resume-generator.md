@@ -165,7 +165,7 @@ JSON example:
 
 ## Working with ChatGPT
 
-I start a new chat with the two JSON files attached and give the ChatGPT app access to a blank resume.html file in VS Code. Then I provide it a copy/pasted job description or the URL to one plus the prompt below.
+I start a new chat with the two JSON files attached and give the ChatGPT app access to a blank resume.html file in VS Code. Then I provide either a pasted job description or a URL to one, along with the prompt below.
 
 > You have been given 2 JSON files. “prompt.json” defines your tasks as a resume generating assistant with lists of things to do and not do. “CV.json” is my curriculum vitae for you to use to complete the task. Do not deviate from what’s defined in “prompt.json”.
 
