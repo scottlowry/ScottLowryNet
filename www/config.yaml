@@ -1,0 +1,64 @@
+baseURL: "https://www.scottlowry.net/"
+languageCode: "en-us"
+title: "ScottLowry.net"
+theme: "PaperMod"
+
+params:
+  defaultTheme: "auto"
+  disableThemeToggle: false
+  ShowReadingTime: false
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: false
+  ShowWordCount: false
+  ShowFullTextinRSS: false
+  ShowToc: true
+  hideFooter: true
+
+  socialIcons:
+      - name: "linkedin"
+        url: "https://www.linkedin.com/in/scott-m-lowry/"
+      - name: "github"
+        url: "https://www.github.com/scottlowry"
+      - name: "email"
+        url: "mailto:Scott@ScottLowry.net"
+
+  homeInfoParams:
+    Title: "Welcome!"
+    Content: "Thoughts and experiences on Microsoft 365, Azure, and Security Engineering."
+
+  mainSections:
+    - posts
+
+menu:
+  main:
+    - identifier: "Archive"
+      name: "Archive"
+      url: "/archives/"
+      weight: 1
+    - identifier: "Tags"
+      name: "Tags"
+      url: "/tags/"
+      weight: 2
+    - identifier: "Search" 
+      name: "Search"
+      url: "/search/"
+      weight: 3
+    - identifier: "Home"
+      name: "Home"
+      url: "/"
+      weight: 4
+
+assets:
+    favicon: "favicon.png"
+
+search:
+  enable: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON 
