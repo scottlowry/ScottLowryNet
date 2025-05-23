@@ -14,8 +14,3 @@ A personal tech blog where I share insights, tutorials, and experiences in syste
 ## 🚀 Deployment
 
 This site is automatically deployed from the `main` branch using [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static/). See the deployment workflow [here](https://github.com/scottlowry/ScottLowry.net/actions).
-
-## 🛡️ Security & Privacy
-
-- Email obfuscated with client-side JavaScript
-- Cloudflare DNS used for custom domain and protection
