@@ -172,6 +172,7 @@ I start a new chat with the two JSON files attached and give the ChatGPT app acc
 ChatGPT generates a custom resume written in HTML within VS Code. I save the HTML file and then view it using a web browser and edit as needed in VS Code or by prompting ChatGPT to edit. Once satisfied, I open it with Word and export it as a PDF.
 
 [View Example Resume HTML](/assets/posts/chatgpt-resume-generator/example-resume.html)
+
 [Download Example Resume PDF](/assets/posts/chatgpt-resume-generator/example-resume.pdf)
 
 HTML output example:
