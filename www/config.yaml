@@ -3,12 +3,17 @@ languageCode: "en-us"
 title: "ScottLowry.net"
 theme: "PaperMod"
 
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
 params:
   defaultTheme: "auto"
   disableThemeToggle: false
   ShowReadingTime: false
   ShowShareButtons: true
-  ShowPostNavLinks: true
+  ShowPostNavLinks: false
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: false
@@ -16,6 +21,7 @@ params:
   ShowFullTextinRSS: false
   ShowToc: true
   hideFooter: true
+  showSeries: true
 
   socialIcons:
       - name: "linkedin"
