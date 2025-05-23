@@ -14,9 +14,9 @@ Looking for work in the current tech job market has never been more frustrating.
 ## Getting Started
 
 I use the following tools:
-- [ChatGPT app](https://openai.com/chatgpt/download/) for macOS (the Windows and browser versions of ChatGPT do not support integrating with other apps*)
-- [VS Code](https://code.visualstudio.com/) (or any text editor of your choice)
-- Microsoft Word (used to convert the final HTML into a PDF)
+- **[ChatGPT app](https://openai.com/chatgpt/download/) for macOS** (the Windows and browser versions of ChatGPT do not support integrating with other apps*)
+- **[VS Code](https://code.visualstudio.com/)** (or any text editor of your choice)
+- **Microsoft Word** (used to convert the final HTML into a PDF)
 
 The goal is to have ChatGPT generate a custom resume in HTML within VS Code that can be saved as a PDF using Word. HTML is used because it offers more control over styling and layout when converted to PDF.
 
@@ -24,9 +24,9 @@ The goal is to have ChatGPT generate a custom resume in HTML within VS Code that
 
 ## Initial Setup
 
-I create 2 files:
-- CV.json, my curriculum vitae
-- prompt.json, a set of defined tasks plus lists of explicit does and dont's for ChatGPT
+I create two files:
+- **CV.json**, my curriculum vitae
+- **prompt.json**, a set of defined tasks plus lists of explicit does and dont's for ChatGPT
 
 I use JSON because it allows ChatGPT to precisely parse data.
 
