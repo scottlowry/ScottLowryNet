@@ -124,7 +124,7 @@ JSON example:
 
 ### prompt.json
 
-Anyone experienced with AI knows it can hallucinate so this is to prevent that. This is also where you can give it precise instructions on how to format the resume. It's also important to make sure ChatGPT creates an ATS compatible resume.
+Anyone experienced with AI knows it can hallucinate so this is to prevent that. This is also where you can give it precise instructions on how to format the resume. It's also important to make sure that ChatGPT creates an ATS compatible resume.
 
 JSON example:
 ```json
