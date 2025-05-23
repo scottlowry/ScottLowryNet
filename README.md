@@ -1,10 +1,12 @@
 # ScottLowry.net
 
-A personal resume site for myself.
+A personal tech blog where I share insights, tutorials, and experiences in systems engineering and technology.
 
 ## 🔧 Tech Stack
 
-- **HTML/CSS** – Static site structure and styling
+- **Hugo** – Static site generator
+- **PaperMod Theme** – Clean and responsive Hugo theme
+- **HTML/CSS** – Custom styling and modifications
 - **Azure Static Web Apps** – Hosting and CI/CD
 - **GitHub Actions** – Automated deployment
 - **Custom Domain** – [ScottLowry.net](https://www.ScottLowry.net)
