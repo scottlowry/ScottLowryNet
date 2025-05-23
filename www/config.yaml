@@ -26,8 +26,8 @@ params:
         url: "mailto:Scott@ScottLowry.net"
 
   homeInfoParams:
-    Title: "Welcome!"
-    Content: "Thoughts and experiences on Microsoft 365, Azure, and Security Engineering."
+    Title: "Scott Lowry | Tech & Security"
+    Content: "Applied insights on infrastructure, AI, automation, and cybersecurity."
 
   mainSections:
     - posts
@@ -52,7 +52,7 @@ menu:
       weight: 4
 
 assets:
-    favicon: "favicon.png"
+    favicon: "/assets/favicon.png"
 
 search:
   enable: true
