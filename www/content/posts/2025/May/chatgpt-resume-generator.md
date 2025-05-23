@@ -20,7 +20,7 @@ I use the following tools:
 
 The goal is to have ChatGPT generate a custom resume in HTML within VS Code that can be saved as a PDF using Word. HTML is used because it offers more control over styling and layout when converted to PDF.
 
-**If you're unable to use the ChatGPT macOS app, you can still copy/paste HTML between ChatGPT and VS Code.*
+**If you're unable to use the ChatGPT macOS app, you can still copy/paste HTML between ChatGPT and VS Code. You could use [Cursor](https://www.cursor.com/) as an alternative to both ChatGPT plus VS Code on Windows.*
 
 ## Initial Setup
 
