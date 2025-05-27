@@ -4,7 +4,6 @@ title: "ScottLowry.net"
 theme: "PaperMod"
 
 taxonomies:
-  category: categories
   tag: tags
   series: series
 
@@ -20,8 +19,14 @@ params:
   ShowWordCount: false
   ShowFullTextinRSS: false
   ShowToc: true
-  hideFooter: true
-  showSeries: true
+  hideFooter: false
+  
+  assets:
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+    safari_pinned_tab: "/safari-pinned-tab.svg"
 
   socialIcons:
       - name: "linkedin"
@@ -32,11 +37,12 @@ params:
         url: "mailto:Scott@ScottLowry.net"
 
   homeInfoParams:
-    Title: "Scott Lowry | Tech & Security"
-    Content: "Applied insights on infrastructure, AI, automation, and cybersecurity."
+    Title: "Welcome to my blog!"
+    Content: "This is where I write about my experiences and thoughts on technology, security, and automation."
 
   mainSections:
     - posts
+    - series
 
 menu:
   main:
@@ -44,21 +50,22 @@ menu:
       name: "Archive"
       url: "/archives/"
       weight: 1
+    - identifier: "Series"
+      name: "Series"
+      url: "/series/"
+      weight: 2
     - identifier: "Tags"
       name: "Tags"
       url: "/tags/"
-      weight: 2
+      weight: 3
     - identifier: "Search" 
       name: "Search"
       url: "/search/"
-      weight: 3
+      weight: 4
     - identifier: "Home"
       name: "Home"
       url: "/"
-      weight: 4
-
-assets:
-    favicon: "/assets/favicon.png"
+      weight: 5
 
 search:
   enable: true

@@ -4,10 +4,9 @@ date: 2025-05-23
 draft: false
 tags: ["ChatGPT", "AI", "automation"]
 summary: "Use ChatGPT to create custom tailored resumes based on a given job description."
-type: "posts"
 ---
 
-## Introduction
+# Introduction
 
 Looking for work in the current tech job market has never been more frustrating. If you have a broad range of experience, you're likely qualified for several roles. That means maintaining multiple resumes on top of needing to tailor them per job application. Luckily we have generative AI like ChatGPT now that can do this for us.
 

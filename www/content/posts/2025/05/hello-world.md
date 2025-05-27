@@ -4,7 +4,6 @@ date: 2025-05-23
 draft: false
 tags: ["Proxmox", "M365", "Azure", "Cloudflare", "Terraform", "AI", "Cybersecurity", "ChatGPT"]
 summary: "Kicking off this blog with a look at my personal projects and what I’ll be writing about."
-type: "posts"
 ShowToc: false
 ---
 
