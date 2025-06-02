@@ -101,6 +101,6 @@ I wanted a blog with no backend, minimal risk of breakage, and full version cont
 
 If you're interested in starting your own Hugo blog, I recommend checking out the [official Hugo documentation](https://gohugo.io/documentation/).
 
-## What's Next?
+## Next Steps
 
 In the next article, I'll cover how this blog is deployed using Azure Static Web Apps and GitHub Actions. This setup provides a robust, free hosting solution that includes automatic deployments, global CDN, and built-in security features.
