@@ -3,7 +3,7 @@ title: "Replacing the Bambu P1S Camera with a Raspberry Pi"
 date: 2025-06-02
 draft: false
 summary: "Use a Raspberry Pi for higher resolution print monitoring."
-tags: ["Linux", "Raspberry Pi"]
+tags: ["Linux", "Raspberry Pi", "camera-streamer"]
 ---
 
 # Introduction
