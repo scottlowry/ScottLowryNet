@@ -67,5 +67,5 @@ The workflow automatically:
 
 ## Next Steps
 
-In the next post, I'll cover setting up a custom domain for the site using Cloudflare DNS.
+In the next post, I'll cover setting up a custom domain and gathering analytics for the site using Cloudflare DNS.
 
