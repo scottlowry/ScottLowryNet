@@ -1,6 +1,6 @@
 ---
 title: "How I Built This Blog: Part 2"
-date: 2025-06-02
+date: 2025-06-03
 draft: false
 summary: "An overview of how this blog is hosted and deployed using Azure Static Web Apps and GitHub Actions."
 tags: ["Azure", "GitHub", "CI/CD", "Hugo", "web development", "blog"]
