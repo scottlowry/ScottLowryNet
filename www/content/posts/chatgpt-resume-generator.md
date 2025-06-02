@@ -8,7 +8,7 @@ draft: false
 
 # Introduction
 
-Looking for work in the current tech job market has never been more frustrating. If you have a broad range of experience, you're likely qualified for several roles. That means maintaining multiple resumes on top of needing to tailor them per job application. With a little bit of prep, ChatGPT can be configured to generate quality resumes based on a given job description to save time and energy instead of manually juggling and editing resumes. 
+Looking for work in the current tech job market has never been more frustrating. If you have a broad range of experience, you're likely qualified for several roles. That means maintaining multiple resumes on top of needing to tailor them per job application. With a little bit of prep, ChatGPT can be configured to generate quality resumes based on a given job description to save time instead of manually juggling and editing resumes. 
 
 ## Getting Started
 
