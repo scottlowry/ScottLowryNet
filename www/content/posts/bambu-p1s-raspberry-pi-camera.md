@@ -8,17 +8,17 @@ tags: ["Linux", "Raspberry Pi", "camera-streamer"]
 
 # Introduction
 
-I love my Bambu Labs P1S 3D printer. It's by far the coolest piece of technology I own. The only downside is the webcam for remote monitoring prints is abysmal: 720p at only .5 frames per second. This is due to the limited processing power of the ESP32 microcontroller that the P1S uses. A Raspberry Pi, even an older 3B model, is a lot more powerful. I just happen to have a couple laying around plus a 5MP 1080p camera module so I set up a better solution.
+I love my Bambu Labs P1S 3D printer. It's by far the coolest piece of technology I own. The only downside is the webcam for remote monitoring prints is abysmal: 720p at only .5 frames per second. This is due to the limited processing power of the ESP32 microcontroller that the P1S uses. A Raspberry Pi, even an older 3B+ model, is a lot more powerful. I just happen to have a couple laying around plus a 5MP 1080p camera module so I set up a better solution.
 
 ## Getting Started
 
 I used the following:
-- **Raspberry Pi 3B** (newer Pis would also work)
-- **Arducam 5MP 1080p OV5647** camera module*
+- **[Raspberry Pi 3B+](https://amzn.to/3FndjbI)** (a newer Pi would also work)
+- **[Arducam 5MP 1080p OV5647](https://amzn.to/43JMeaK)** camera module*
 - **[camera-streamer](https://github.com/ayufan/camera-streamer)** to capture and stream video over HTTP
 - **Caddy** as a reverse proxy
 
-**This camera module is old and has limitations which I'll expand on bellow. Use a newer Arducam camera module or the official Raspberry Pi v2 or v3 camera modules for better image quality and more features using camera-streamer.*
+**This camera module is old and has limitations which I'll expand on bellow. Use a newer Arducam camera module or the official Raspberry Pi [v2](https://amzn.to/4jCkDy5) or [v3](https://amzn.to/3Hq4dvf) camera modules for better image quality and more features using camera-streamer.*
 
 ## Installation
 
