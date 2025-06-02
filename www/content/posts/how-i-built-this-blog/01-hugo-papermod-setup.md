@@ -10,7 +10,7 @@ draft: false
 
 # Introduction
 
-This article is part one in a series about how I use [Hugo](https://gohugo.io/), a powerful static site generator written in Go, to build this blog. I'll also dive into using [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static) to host it for free and [GitHub Actions](https://github.com/features/actions) for CI/CD in a later article. 
+This article is part one in a series about how I use [Hugo](https://gohugo.io/), a powerful static site generator written in Go, to build this blog. I'll also dive into using [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static) to host it for free, [GitHub Actions](https://github.com/features/actions) for CI/CD, and Cloudflare for custom DNS and web analytics in later articles. 
 
 ## Why Hugo?
 
