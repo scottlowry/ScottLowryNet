@@ -1,12 +1,11 @@
 ---
 title: "How I Built This Blog: Part 1"
-date: 2025-05-27
-draft: false
 summary: "An overview of how this blog is built using Hugo with PaperMod theme."
-tags: ["Hugo", "web development", "static site", "blog"]
+tags: ["Hugo", "web development", "blog"]
 series: ["Blog Development"]
 series_weight: 1
-ShowPostNavLinks: true
+date: 2025-05-27
+draft: false
 ---
 
 # Introduction
@@ -38,13 +37,9 @@ The blog follows a standard Hugo directory structure, with posts organized by ye
 
 ```
 www/
-├── config.yaml        # Main configuration file
+├── config.yaml       # Main configuration file
 ├── content/          # Where all the content lives
-│   ├── posts/        # Blog posts in Markdown
-│   │   └── YYYY/     # Posts organized by year
-│   │       └── MM/   # Posts organized by month
-│   └── series/       # Posts organized in series
-│       └── YYYY/     # Series organized by year
+│   └── posts/        # Blog posts in Markdown
 ├── static/           # Static assets (images, etc.)
 │   ├── assets/       # Site-wide assets
 │   └── posts/        # Post-specific assets
@@ -70,7 +65,7 @@ Setting up Hugo on my Mac was straightforward. Here's how I did it:
 
 3. I created a new Hugo site in my desired directory:
    ```bash
-   hugo new site www
+   hugo new site ScottLowryNet/www
    cd www
    ```
 
@@ -82,13 +77,23 @@ Setting up Hugo on my Mac was straightforward. Here's how I did it:
 
 5. I created a new `config.yaml` file in `www` and configured it for my needs. You can see the current configuration in my [GitHub repository](https://github.com/scottlowry/ScottLowryNet/blob/main/www/config.yaml).
 
-6. I created my first post in markdown, which you can view [here](https://raw.githubusercontent.com/scottlowry/ScottLowryNet/refs/heads/main/www/content/posts/2025/May/hello-world.md). The front matter and structure are similar to what you'd find in any Hugo blog, but customized for my needs.
+6. I created my first post in markdown, which you can view [here](https://raw.githubusercontent.com/scottlowry/ScottLowryNet/refs/heads/main/www/content/posts/2025/05/hello-world.md). The front matter and structure are similar to what you'd find in any Hugo blog, but customized for my needs.
 
 7. I then used Hugo's built-in development server to view the draft:
    ```bash
    hugo server -D
    ```
    This starts a local development server at `http://localhost:1313` with draft posts enabled, allowing me to preview my content in real-time using a web browser. The development server provides live reload, so any changes to content or configuration are immediately visible in the browser. This makes it easy to iterate on the design and content before deploying.
+
+8. Once satisfied with edits, I commited to GitHub.
+   ```bash
+   # Ensure branch is called main
+   git branch -M main
+
+   # Stage all changes and commit
+   git add -A
+   git commit -m "initial commit"
+   ```
 
 ## Conclusion
 

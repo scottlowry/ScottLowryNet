@@ -1,14 +1,14 @@
 ---
 title: "Automating Custom Resumes with ChatGPT"
+summary: "Use ChatGPT to create custom tailored resumes based on a given job description."
+tags: ["ChatGPT", "AI", "automation", "job search"]
 date: 2025-05-23
 draft: false
-tags: ["ChatGPT", "AI", "automation"]
-summary: "Use ChatGPT to create custom tailored resumes based on a given job description."
 ---
 
 # Introduction
 
-Looking for work in the current tech job market has never been more frustrating. If you have a broad range of experience, you're likely qualified for several roles. That means maintaining multiple resumes on top of needing to tailor them per job application. Luckily we have generative AI like ChatGPT now that can do this for us.
+Looking for work in the current tech job market has never been more frustrating. If you have a broad range of experience, you're likely qualified for several roles. That means maintaining multiple resumes on top of needing to tailor them per job application. With a little bit of prep, ChatGPT can be configured to generate quality resumes based on a given job description to save time and energy instead of manually juggling and editing resumes. 
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ The goal is to have ChatGPT generate a custom resume in HTML within VS Code that
 
 ## Initial Setup
 
-I create two files:
+Some initial prep work is needed to get ChatGPT to generate good results. ChatGPT works best when given context and constraints so I created the following files to work with:
 - **CV.json**, my curriculum vitae
 - **prompt.json**, a set of defined tasks plus lists of explicit does and dont's for ChatGPT
 
@@ -31,7 +31,7 @@ I use JSON because it allows ChatGPT to precisely parse data.
 
 ### CV.json
 
-Put as much information as you can for ChatGPT to draw from. Modify the JSON however you want by adding/removing fields. Use ChatGPT to help if you're not familiar with JSON. 
+Put as much information as you can for ChatGPT to draw from. Modify the JSON however you want by adding/removing fields. Use ChatGPT to help if you're not familiar with JSON. The goal is to give ChatGPT as much context to draw from to match job descriptions.
 
 JSON example:
 ```json
@@ -123,7 +123,7 @@ JSON example:
 
 ### prompt.json
 
-Anyone experienced with AI knows it can hallucinate so this is to prevent that. This is also where you can give it precise instructions on how to format the resume. It's also important to make sure that ChatGPT creates an ATS compatible resume.
+Anyone experienced with AI knows it can hallucinate so this is to prevent that. This is also where you can give ChatGPT precise instructions on how to format the resume. I would avoid having ChatGPT try to create anything overly stylized. My understanding is simple resumes are better for ATS parsing so avoid colors, tables, etc. 
 
 JSON example:
 ```json
@@ -143,7 +143,7 @@ JSON example:
       "Always structure the resume in this order: Summary, Certifications, Professional Experience & accomplishments, Skills, Projects (if relevant), Education.",
       "List certifications and certifications in progress only if relevant to the job description.",
       "Include one project only if it demonstrates direct experience with tools or practices directly mentioned in the job description.",
-      "Ensure the resume is optimized to pass ATS filters.",
+      "Ensure the resume is optimized to pass ATS filters. No use of colors, tables, or other formatting that may not parse.",
       "If listing certifications in progress only list one most relevant to the job.",
       "Focus on preferred tools as defined in full job history JSON",
       "Include 1-2 accomplishments for each employer that are most relevant to the job description. If there are none given in full job history JSON, create one based on bullets without any embellishment. Include as bulletized subsection under experience.",
@@ -168,90 +168,13 @@ I start a new chat with the two JSON files attached and give the ChatGPT app acc
 
 > You have been given 2 JSON files. “prompt.json” defines your tasks as a resume generating assistant with lists of things to do and not do. “CV.json” is my curriculum vitae for you to use to complete the task. Do not deviate from what’s defined in “prompt.json”.
 
-ChatGPT generates a custom resume written in HTML within VS Code. I save the HTML file and then view it using a web browser and edit as needed in VS Code or by prompting ChatGPT to edit. Once satisfied, I open it with Word and export it as a PDF.
+ChatGPT generates a custom resume written in HTML within VS Code. I save the HTML file and then view it using a web browser and edit as needed in VS Code or by prompting ChatGPT to edit. Once satisfied, I open it with Word and save it as a PDF.
 
 [View Example Resume HTML](/assets/posts/chatgpt-resume-generator/example-resume.html)
 
+[View Example Resume HTML Code](https://github.com/scottlowry/ScottLowryNet/blob/main/www/static/assets/posts/chatgpt-resume-generator/example-resume.html)
+
 [Download Example Resume PDF](/assets/posts/chatgpt-resume-generator/example-resume.pdf)
-
-HTML output example:
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>John Doe – Systems Administrator Resume</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.5; margin: 40px; }
-    h1, h2 { color: #2c3e50; }
-    h1 { margin-bottom: 0; }
-    .section { margin-top: 30px; }
-    .job-title { font-weight: bold; }
-    ul { padding-left: 20px; }
-  </style>
-</head>
-<body>
-
-  <h1>John Doe</h1>
-  <p><strong>IT Professional</strong> | john.doe@example.com | (000) 000-0000 | <a href="https://www.linkedin.com/in/johndoe">LinkedIn</a> | <a href="https://www.johndoe.com">johndoe.com</a> | City, State</p>
-
-  <div class="section">
-    <h2>Summary</h2>
-    <p>Experienced IT professional specializing in systems administration, automation, and cloud services. Proven ability to manage hybrid environments and ensure uptime across critical infrastructure. Strong alignment with best practices in security and operational efficiency.</p>
-  </div>
-
-  <div class="section">
-    <h2>Certifications</h2>
-    <ul>
-      <li>Certification Name – Issuing Organization (2024)</li>
-    </ul>
-    <h3>In Progress</h3>
-    <ul>
-      <li>Certification Name – Issuing Organization (Est. Spring 2025)</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Professional Experience</h2>
-    <div>
-      <p class="job-title">Systems Administrator – Company Name (Remote)</p>
-      <p>City, State | Month/Year – Month/Year</p>
-      <p><em>Brief company description.</em></p>
-      <ul>
-        <li>Managed Windows and Linux servers across production and staging environments.</li>
-        <li>Implemented automated patching and monitoring solutions with Tool A and Tool B.</li>
-      </ul>
-      <strong>Key Achievements:</strong>
-      <ul>
-        <li>Reduced incident response time by introducing automated alerts and remediation workflows.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Skills</h2>
-    <ul>
-      <li>Skill 1</li>
-      <li>Skill 2</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Projects</h2>
-    <p><strong>Project Name</strong> – Brief description of the personal project.</p>
-    <p>Technologies: Technology A, Technology B</p>
-    <p><a href="https://www.projectlink.com">https://www.projectlink.com</a></p>
-  </div>
-
-  <div class="section">
-    <h2>Education</h2>
-    <p>School Name – Degree or Diploma</p>
-    <p>City, State</p>
-  </div>
-
-</body>
-</html>
-```
 
 ## Tips & Tricks
 
@@ -276,8 +199,6 @@ Also edit prompt.json, adding a new line under "do" section to generate content 
 }
 ```
 
-## Final Thoughts
+## Conclusion
 
-- ***Always thoroughly check ChatGPT's output!*** The guardrails set in prompt.json should prevent hallucinations but you should always check.
-- Word is easy and accessible, but not precise for converting HTML to PDF. Use [Playwright](https://github.com/microsoft/playwright) if styling is critical.
-- [Cursor](https://www.cursor.com/) could be used in place of ChatGPT plus VS Code. I used ChatGPT here for ease and accessibility. 
+***Always thoroughly check ChatGPT's output!*** The guardrails set in prompt.json should prevent hallucinations but you should *always* double check. Make sure formatting is ok too, especially after using Word to save as PDF.

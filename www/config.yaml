@@ -4,6 +4,7 @@ title: "ScottLowry.net"
 theme: "PaperMod"
 
 taxonomies:
+  category: categories
   tag: tags
   series: series
 
@@ -12,7 +13,7 @@ params:
   disableThemeToggle: false
   ShowReadingTime: false
   ShowShareButtons: true
-  ShowPostNavLinks: false
+  ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: false
@@ -42,7 +43,6 @@ params:
 
   mainSections:
     - posts
-    - series
 
 menu:
   main:

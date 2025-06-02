@@ -7,7 +7,7 @@ summary: "Kicking off this blog with a look at my personal projects and what I�
 ShowToc: false
 ---
 
-This blog is where I break down practical work in Proxmox, Microsoft 365, Azure, Cloudflare, Terraform, and security—alongside notes on AI and the general state of tech.
+This blog is where I break down practical work in Proxmox, Microsoft 365, Azure, Cloudflare, Terraform, and security—alongside notes on AI and other tech projects.
 
 ## My Setup
 
