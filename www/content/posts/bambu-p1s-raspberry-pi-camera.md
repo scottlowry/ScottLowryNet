@@ -8,7 +8,7 @@ tags: ["Linux", "Raspberry Pi", "camera-streamer"]
 
 # Introduction
 
-I love my Bambu Labs P1S 3D printer. It's by far the coolest piece of technology I own. The only downside is the webcam for remote monitoring prints is abysmal: 720p at only .5 frames per second. This is due to the limited processing power of the ESP32 microcontroller that the P1S uses. A Raspberry Pi, even an older 3B+ model, is a lot more powerful. I just happen to have a couple laying around plus a 5MP 1080p camera module so I set up a better solution.
+I love my Bambu Labs P1S 3D printer. It's by far the coolest piece of technology I own. The only downside is the webcam for remote monitoring prints is abysmal: 720p at only .5 frames per second. This is due to the limited processing power of the ESP32 microcontroller that the P1S uses. A Raspberry Pi, even an older 3B+ model, is a lot more powerful. I just happen to have one laying around plus a 5MP 1080p camera module so I set up a better solution.
 
 ## Getting Started
 
