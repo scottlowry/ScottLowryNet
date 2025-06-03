@@ -131,4 +131,6 @@ Edited `/etc/caddy/CaddyFile`:
 
 ## Final Thoughts
 
-This is only marginally better than the built-in camera. Even though the camera module supports 1080p at 30 fps, I've limited the stream to 900p at 15 fps due to bandwidth. I plan to replace this module with the official Raspberry Pi v2 module at some point so WebRTC can be used with full 1080p resolution.
+This is only marginally better than the printer's built-in camera. Even though the camera module supports 1080p at 30 fps, I've limited the stream to 900p at 15 fps due to bandwidth. I plan to replace this module with the official Raspberry Pi v2 module at some point so WebRTC can be used with full 1080p resolution.
+
+I also now need to figure out how to physically set up the Raspberry Pi with camera onto the printer. I haven't found exactly what I'm looking for already designed to print so it looks like I'll need to design something in TinkerCAD. 
