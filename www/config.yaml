@@ -13,6 +13,7 @@ params:
   disableThemeToggle: false
   ShowReadingTime: false
   ShowShareButtons: true
+  ShareButtons: ["linkedin", "reddit", "twitter", "facebook"]
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
