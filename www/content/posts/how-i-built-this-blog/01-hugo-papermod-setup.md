@@ -14,7 +14,7 @@ This article is part one in a series about how I use [Hugo](https://gohugo.io/),
 
 ## Why Hugo?
 
-After a 20+ year break from web development, I wanted to start a blog without diving back into the complexity of traditional web stacks. Hugo was the perfect solution because it offers:
+After a ~20 year break from web development, I wanted to start a blog without diving back into the complexity of traditional web stacks. Hugo was the perfect solution because it offers:
 - **Simplicity**: Write content in Markdown, and Hugo handles the rest
 - **Performance**: Static sites are fast and secure
 - **Flexibility**: Easy to customize and extend
