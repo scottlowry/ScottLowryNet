@@ -90,7 +90,7 @@ Setting up Hugo on my Mac was straightforward. Here's how I did it:
    ```
    This starts a local development server at `http://localhost:1313` with draft posts enabled, allowing me to preview my content in real-time using a web browser. The development server provides live reload, so any changes to content or configuration are immediately visible in the browser. This makes it easy to iterate on the design and content before deploying.
 
-9. Once satisfied with edits, I commited to GitHub.
+9. Once satisfied with edits, I published to GitHub.
    ```bash
    # Ensure branch is called main
    git branch -M main
