@@ -1,5 +1,5 @@
 ---
-title: "Automating Custom Resumes with ChatGPT"
+title: "Generate Custom Resumes with ChatGPT"
 summary: "Use ChatGPT to create custom tailored resumes based on a given job description."
 tags: ["ChatGPT", "AI", "automation", "job search"]
 date: 2025-05-25
