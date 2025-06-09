@@ -119,7 +119,7 @@ sudo systemctl start camera-streamer.service
 ```bash
 sudo apt-get install caddy -y
 ```
-Edited `/etc/caddy/CaddyFile`:
+Edited `/etc/caddy/Caddyfile`:
 ```
         handle / {
         rewrite * /stream
