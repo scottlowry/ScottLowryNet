@@ -1,7 +1,7 @@
 ---
 title: "Saving a Surface Pro 3 from E-waste Using Ubuntu"
 date: 2025-06-11
-draft: true
+draft: false
 summary: "Use Ubuntu to resurrect an old Surface Pro 3 from the grave."
 tags: ["Linux", "Ubuntu", "Microsoft Surface", "linux-surface"]
 ---
