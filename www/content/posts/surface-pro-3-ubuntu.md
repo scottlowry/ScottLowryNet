@@ -8,7 +8,7 @@ tags: ["Linux", "Ubuntu", "Microsoft Surface", "linux-surface"]
 
 # Introduction
 
-A few years ago my wife upgraded from a Surface Pro 3 to a new Lenovo Yoga. She hung on to the Surface and eventually gave it me to sell. It's too old to run Windows 11 and Windows 10 doesn't run well on it now either. It's not worth selling so I decided to recycle it. That's until I came across this project: **[linux-surface](https://github.com/linux-surface/linux-surface)**. It's a special build of the Linux Kernel specifically for Surface devices. Lucky for me, the Surface Pro 3 is fully supported unlike some other Surface devices. 
+A few years ago my wife upgraded from a Surface Pro 3 to a new Lenovo Yoga. She hung on to the Surface and eventually gave it me to sell. It's too old to run Windows 11 and Windows 10 doesn't run well on it now either though. I had decided to recycle it until I came across this project: **[linux-surface](https://github.com/linux-surface/linux-surface)**. It's a special build of the Linux Kernel specifically for Surface devices. Lucky for me, the Surface Pro 3 is fully supported unlike some other Surface devices. 
 
 ## Installation
 
