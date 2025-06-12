@@ -18,7 +18,7 @@ My Proxmox host has a 12TB RAID array that I use to store content for various se
 
 To fix this, the container users need to be added to Proxmox. Then ownership can be given to folders used as mountpoints. I'm going to use the [Apt-Cacher Ng](/posts/apt-cache-proxy) service as an example. 
 
-1. First I need to find the UID and GUID for the `apt-cacher-ng` user/group in the container. 
+1. First I need to find the UID and GID for the `apt-cacher-ng` user/group in the container. 
 ```bash
 cat /etc/passwd | grep apt-cacher-ng
 ```
@@ -26,9 +26,9 @@ Output:
 ```
 apt-cacher-ng:x:103:112::/var/cache/apt-cacher-ng:/usr/sbin/nologin
 ```
-This informs me that the UID is 103 and the GUID is 112.
+This informs me that the UID is 103 and the GID is 112.
 
-2. Now I need to add the user/group to the host, being sure to prepend 100 to the UID and GUID:
+2. Now I need to add the user/group to the host, being sure to prepend 100 to the UID and GID:
 ```bash
 useradd -u 100103 -g 100112 -M -s /usr/sbin/nologin apt-cacher-ng
 groupadd -g 100112 apt-cacher-ng
