@@ -2,7 +2,7 @@
 title: "Replacing the Bambu P1S Camera with a Raspberry Pi"
 date: 2025-06-02
 draft: false
-summary: "Use a Raspberry Pi for higher resolution print monitoring."
+summary: "Use a Raspberry Pi for higher resolution print monitoring"
 tags: ["Linux", "Raspberry Pi", "camera-streamer"]
 ---
 
@@ -10,7 +10,7 @@ tags: ["Linux", "Raspberry Pi", "camera-streamer"]
 
 I love my Bambu Labs P1S 3D printer. It's by far the coolest piece of technology I own. The only downside is the webcam for remote monitoring prints is abysmal: 720p at only .5 frames per second. This is due to the limited processing power of the ESP32 microcontroller that the P1S uses. A Raspberry Pi, even an older 3B+ model, is a lot more powerful. I just happen to have one laying around plus a 5MP 1080p camera module so I set up a better solution.
 
-## Getting Started
+# Getting Started
 
 I used the following:
 - **[Raspberry Pi 3B+](https://amzn.to/3FndjbI)** (a newer Pi would also work)
@@ -20,7 +20,7 @@ I used the following:
 
 **This camera module is old and has limitations which I'll expand on bellow. Use a newer Arducam camera module or the official Raspberry Pi [v2](https://amzn.to/4jCkDy5) or [v3](https://amzn.to/3Hq4dvf) camera modules for better image quality and more features using camera-streamer.*
 
-## Installation
+# Installation
 
 1. I first flashed the latest version of 32-bit Raspberry Pi OS Lite (Bookworm) onto a micro SD card using the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) tool. 
 
@@ -129,7 +129,7 @@ Edited `/etc/caddy/Caddyfile`:
 
 10. Now if I visit the Raspberry Pi at `http://<pi-IP>` it will proxy to `http://localhost:8080/stream`.
 
-## Final Thoughts
+# Final Thoughts
 
 This is only marginally better than the printer's built-in camera. Even though the camera module supports 1080p at 30 fps, I've limited the stream to 900p at 15 fps due to bandwidth. I plan to replace this module with the official Raspberry Pi v2 module at some point so WebRTC can be used with full 1080p resolution.
 

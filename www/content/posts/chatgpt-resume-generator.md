@@ -1,6 +1,6 @@
 ---
 title: "Generate Custom Resumes with ChatGPT"
-summary: "Use ChatGPT to create custom tailored resumes based on a given job description."
+summary: "Use ChatGPT to create custom tailored resumes based on a given job description"
 tags: ["ChatGPT", "AI", "automation", "job search"]
 date: 2025-05-25
 draft: false
@@ -10,7 +10,7 @@ draft: false
 
 Looking for work in the current tech job market has never been more frustrating. If you have a broad range of experience, you're likely qualified for several roles. That means maintaining multiple resumes on top of needing to tailor them per job application. With a little bit of prep, ChatGPT can be configured to generate quality resumes based on a given job description to save time instead of manually juggling and editing resumes. 
 
-## Getting Started
+# Getting Started
 
 I use the following tools:
 - **[ChatGPT app](https://openai.com/chatgpt/download/) for macOS** (the Windows and browser versions of ChatGPT do not support integrating with other apps*)
@@ -21,7 +21,7 @@ The goal is to have ChatGPT generate a custom resume in HTML within VS Code that
 
 **If you're unable to use the ChatGPT macOS app, you can still copy/paste HTML between ChatGPT and VS Code. You could use [Cursor](https://www.cursor.com/) as an alternative to both ChatGPT plus VS Code on Windows or macOS.*
 
-## Initial Setup
+# Initial Setup
 
 Some initial prep work is needed to get ChatGPT to generate good results. ChatGPT works best when given context and constraints so I created the following files to work with:
 - **CV.json**, my curriculum vitae
@@ -29,7 +29,7 @@ Some initial prep work is needed to get ChatGPT to generate good results. ChatGP
 
 I use JSON because it allows ChatGPT to precisely parse data.
 
-### CV.json
+## CV.json
 
 Put as much information as you can for ChatGPT to draw from. Modify the JSON however you want by adding/removing fields. Use ChatGPT to help if you're not familiar with JSON. The goal is to give ChatGPT as much context to draw from to match job descriptions.
 
@@ -121,7 +121,7 @@ JSON example:
 }
 ```
 
-### prompt.json
+## prompt.json
 
 Anyone experienced with AI knows it can hallucinate so this is to prevent that. This is also where you can give ChatGPT precise instructions on how to format the resume. I would avoid having ChatGPT try to create anything overly stylized. My understanding is simple resumes are better for ATS parsing so avoid colors, tables, etc. 
 
@@ -162,7 +162,7 @@ JSON example:
   }
 ```
 
-## Working with ChatGPT
+# Working with ChatGPT
 
 I start a new chat with the two JSON files attached and give the ChatGPT app access to a blank resume.html file in VS Code. Then I provide either a pasted job description or a URL to one, along with the prompt below.
 
@@ -199,6 +199,6 @@ Also edit prompt.json, adding a new line under "do" section to generate content 
 }
 ```
 
-## Conclusion
+# Conclusion
 
 ***Always thoroughly check ChatGPT's output!*** The guardrails set in prompt.json should prevent hallucinations but you should *always* double check. Make sure formatting is ok too, especially after using Word to save as PDF.
