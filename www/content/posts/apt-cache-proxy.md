@@ -3,7 +3,7 @@ title: "Set Up a Cache Proxy for Debian Updates"
 date: 2025-06-12
 draft: false
 summary: "How to set up Apt-Cacher Ng to cache Debian updates"
-tags: ["Linux", "Debian", "Ubuntu", "Proxmox", "Apt-Cacher Ng"]
+tags: ["Linux", "Debian", "Ubuntu", "Proxmox", "Raspbian", "Apt-Cacher Ng"]
 ---
 
 # Introduction
