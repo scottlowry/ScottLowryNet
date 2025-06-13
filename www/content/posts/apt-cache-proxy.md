@@ -1,5 +1,5 @@
 ---
-title: "Set Up a Cache Proxy for Debian Updates"
+title: "Setting Up a Cache Proxy for Debian Updates"
 date: 2025-06-12
 draft: false
 summary: "How to set up Apt-Cacher Ng to cache Debian updates"
