@@ -56,6 +56,11 @@ BindAddress: 10.0.0.12 acng.lan.scottlowry.net
 
 5. Once all set up, I'm able to view stats for `apt-cacher-ng` by visiting `http://acng.lan.scottlowry.net:3142/acng-report.html` in a browser. 
 
+6. I also created a `cron` job to warm the cache every morning at 7am:
+```
+0 7 * * * /usr/bin/apt update && /usr/bin/apt upgrade -d -y
+```
+
 # Client Set Up
 
 Next I set up clients to use the proxy. I use Ansible to manage them in bulk so I wrote the following playbook to config `apt` to use the proxy.
