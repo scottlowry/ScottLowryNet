@@ -17,13 +17,13 @@ I have over a dozen Debian and Debian-based (Proxmox, Ubuntu, Raspbian) instance
 pct create 112 RAID:vztmpl/debian-12-standard_*.tar.zst \
   --arch amd64 \
   --hostname ACNg \
-  --cores 1 \
+  --cores 4 \
   --memory 512 \
   --swap 0 \
   --unprivileged 1 \
   --features nesting=1 \
-  --net0 name=eth0,bridge=vmbr1,firewall=1,gw=10.0.0.1,hwaddr=BC:24:11:D5:5A:6A,ip=10.0.0.12/24,tag=1,type=veth \
-  --rootfs local-zfs:2 \
+  --net0 name=eth0,bridge=vmbr1,firewall=1,gw=10.0.0.1,ip=10.0.0.12/24,tag=1,type=veth \
+  --rootfs local-zfs:2G \
   --mp0 /RAID/Cache,mp=/var/cache/apt-cacher-ng \
   --onboot 1 \
   --ostype debian
