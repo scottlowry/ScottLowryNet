@@ -1,5 +1,5 @@
 ---
-title: "Seting Up a Bitcoin Lottery Miner"
+title: "Setting Up a Bitcoin Lottery Miner"
 date: 2025-06-17
 draft: false
 summary: "Use a USB Block Erupter to solo mine Bitcoin"
