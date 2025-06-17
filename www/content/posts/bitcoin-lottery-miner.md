@@ -12,7 +12,7 @@ I still have an old Block Erupter, a small USB powered ASIC for mining Bitcoin. 
 
 ![So You're Telling Me There's a Chance?](/assets/posts/bitcoin-lottery-miner/chance.png#center)
 
-# Set Up
+# Installation
 
 I opted to use [CGMiner](https://github.com/ckolivas/cgminer) installed in a LXC container with the Block Erupter passed through to mine.
 
