@@ -81,7 +81,7 @@ make
 
 1. I used [BitAddress](https://www.bitaddress.org/), a JavaScript client-side Bitcoin wallet generator, to generate a new Bitcoin address for mining payouts. 
 
-2. I opted to use a solo mining pool so I wouldn't need to keep a copy of the Bitcoin blockchain stored locally. I'm using [KanoPool](https://kano.is/). Once I created an account with the newly generated Bitcoin wallet address configured for payout, I was ready to start mining. I started CGMiner with the worker I set up on KanoPool configured CGMiner to use KanoPool's Seattle and Los Angeles servers as they're geographically closest to me:
+2. I opted to use a solo mining pool so I wouldn't need to keep a copy of the Bitcoin blockchain stored locally. I'm using [KanoPool](https://kano.is/). Once I created an account with the newly generated Bitcoin wallet address configured for payout, I was ready to start mining. I started CGMiner with the worker I set up on KanoPool configured to use KanoPool's Seattle and Los Angeles servers as they're geographically closest to me:
 ```bash
 cgminer -o stratum+tcp://se.kano.is:3333 -u slowry05.worker -p x -o stratum+tcp://la.kano.is:3333 -u slowry05.worker -p x
 ```
