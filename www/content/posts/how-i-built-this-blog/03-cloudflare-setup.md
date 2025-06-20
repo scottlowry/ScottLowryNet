@@ -48,7 +48,7 @@ Cloudflare offers Web Analytics as part of registering my domain with them so it
 
 ## Implementation
 
-Enabling was a quick set up in the Cloudflare admin portal. I navigated to `Web Analytics` under the `Analytics & Logs` section of my domain's settings and enabled it. By default, it injects a JS Snippet to track visitors if the domain is proxied by Cloudflare. This is great except it doesn't track any direct visits to `www` since it's not proxied. I instead opted to manually insert the JS Snippet myself using Hugo's `extend_head.html` partial. Using `extend_head.html` is the recommended approach as it keeps analytics separate from base templates and won't be overwritten during theme updates. Now visits are tracked for both visits to root and `www`. 
+Enabling was a quick set up in the Cloudflare admin portal. I navigated to `Web Analytics` under the `Analytics & Logs` section of my domain's settings and enabled it. By default, it injects a JS snippet to track visitors if the domain is proxied by Cloudflare. This is great except it doesn't track any direct visits to `www` since it's not proxied. Azure is able to inject snippets in the body or head so I configured Azure to insert it in the head. 
 
 # Final Thoughts
 
