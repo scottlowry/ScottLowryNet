@@ -211,29 +211,39 @@ showToc: false
     }
   }
   
-  /* Reduce spacing between share buttons and footer */
-  .share-buttons {
-    margin-bottom: 0 !important;
-  }
-  
-  /* Additional spacing reduction for the entire post content */
-  .post-content {
-    margin-bottom: 0;
-  }
-  
-  /* Remove any additional spacing after share buttons */
-  .post-content > *:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Target the main content area to remove bottom spacing */
-  main {
-    margin-bottom: 0;
-  }
-  
   /* Remove spacing from the article element */
   article {
     margin-bottom: 0;
+  }
+  
+  /* Target all possible elements that might have bottom spacing */
+  .post-content,
+  .post-content > *,
+  .share-buttons,
+  .share-buttons > *,
+  main,
+  main > *,
+  article,
+  article > *,
+  .entry-content,
+  .entry-content > * {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* Specifically target the last elements */
+  .post-content > *:last-child,
+  .entry-content > *:last-child,
+  main > *:last-child,
+  article > *:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* Remove any footer spacing */
+  footer {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 </style>
 
