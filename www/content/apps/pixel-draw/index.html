@@ -9,7 +9,7 @@ showToc: false
 <div id="pixel-draw-app">
   <div id="colorpicker-row">
     <span id="colorpicker-label">Color:</span>
-    <input type="color" id="colorpicker" value="#FFFFFF" title="Pick a color">
+    <input type="color" id="colorpicker" value="#000000" title="Pick a color">
     <button class="drawbtn" onclick="fillCanvas()">Fill</button>
   </div>
   <canvas id="canvas" width="720" height="480"></canvas>
@@ -499,8 +499,8 @@ showToc: false
 
     ws.onopen = function() {
       console.log("WebSocket connected successfully");
-      updateStatus("Connected to Bridge - Checking MCU...", "connecting");
-      // Note: We'll get MCU status separately
+      updateStatus("Connected to Bridge - Checking NodeMCU...", "connecting");
+      // Note: We'll get NodeMCU status separately
     };
 
     ws.onmessage = function(event) {
@@ -514,14 +514,14 @@ showToc: false
             pixels[i] = data.pixels[i];
           }
           redraw();
-          // Don't set ready here - wait for MCU status
+          // Don't set ready here - wait for NodeMCU status
         } else if (data.type === "mcu_status") {
-          // MCU connection status update
+          // NodeMCU connection status update
           if (data.connected) {
-            updateStatus("Connected to MCU", "connected");
+            updateStatus("Connected to NodeMCU", "connected");
             ready = true;
           } else {
-            updateStatus("MCU Disconnected", "disconnected");
+            updateStatus("NodeMCU Disconnected", "disconnected");
             ready = false;
           }
         } else if (data.type === "user_count") {
