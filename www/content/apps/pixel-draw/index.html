@@ -1,564 +1,569 @@
 ---
-layout: raw
-title: Pixel Draw
-summary: A simple web app for drawing on a canvas with a color picker and undo/redo functionality
+title: "Pixel Draw"
+date: 2025-06-20
+draft: false
+description: "A collaborative pixel drawing web app with real-time updates and WebSocket connectivity"
+showToc: false
 ---
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Pixel Draw</title>
-  <!-- Disable zoom for better drawing experience on mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="theme-color" content="#f5f5f5">
-  <style>
-    body {
-      margin: 0;
-      padding: 10px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f5f5;
-      touch-action: manipulation;
-    }
-    #container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 10px;
-    }
-    #canvas {
-      image-rendering: pixelated;
-      border: 2px solid #333;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 100%;
-      height: auto;
-      touch-action: none;
-    }
-    #colorpicker-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    #colorpicker-label {
-      font-size: 1.1em;
-      font-weight: 500;
-      color: #333;
-    }
-    #colorpicker {
-      width: 40px;
-      height: 40px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      border-radius: 8px;
-      touch-action: manipulation;
-    }
-    #colorpicker::-webkit-color-swatch {
-      border-radius: 8px;
-      border: 2px solid #ddd;
-    }
-    #colorpicker::-moz-color-swatch {
-      border-radius: 8px;
-      border: 2px solid #ddd;
-    }
-    #buttonbar {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 0 10px;
-    }
-    .drawbtn {
-      font-size: 1em;
-      padding: 12px 20px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-weight: 500;
-      min-width: 80px;
-      touch-action: manipulation;
-    }
-    .drawbtn:hover {
-      background: #f0f0f0;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .drawbtn:active {
-      transform: translateY(0);
-    }
-    #status {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: 500;
-      font-size: 0.9em;
-      max-width: 100%;
-      word-wrap: break-word;
-    }
-    .status-connected {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-    .status-disconnected {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-    .status-connecting {
-      background: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffeaa7;
-    }
-    
-    #user-count {
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: #e3f2fd;
-      color: #1565c0;
-      border: 1px solid #bbdefb;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: 500;
-      font-size: 0.9em;
-    }
-    
-    /* Mobile-specific improvements */
-    @media (max-width: 768px) {
-      body {
-        padding: 5px;
-      }
-      #container {
-        padding: 5px;
-      }
-      #canvas {
-        max-width: 95vw;
-        max-height: 60vh;
-      }
-      #colorpicker-row {
-        margin-bottom: 10px;
-        gap: 8px;
-      }
-      #colorpicker {
-        width: 35px;
-        height: 35px;
-      }
-      #colorpicker-label {
-        font-size: 1em;
-      }
-      #buttonbar {
-        margin-top: 15px;
-        gap: 8px;
-      }
-      .drawbtn {
-        font-size: 0.9em;
-        padding: 10px 16px;
-        min-width: 70px;
-      }
-      #status {
-        margin-top: 10px;
-        padding: 8px;
-        font-size: 0.85em;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      #canvas {
-        max-width: 90vw;
-        max-height: 50vh;
-      }
-      .drawbtn {
-        font-size: 0.85em;
-        padding: 8px 12px;
-        min-width: 60px;
-      }
-      #buttonbar {
-        gap: 6px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div id="container">
-    <div id="colorpicker-row">
-      <span id="colorpicker-label">Color:</span>
-      <input type="color" id="colorpicker" value="#FFFFFF" title="Pick a color">
-      <button class="drawbtn" onclick="fillCanvas()">Fill</button>
-    </div>
-    <canvas id="canvas" width="720" height="480"></canvas>
-    <div id="status" class="status-disconnected">Disconnected</div>
-    <div id="user-count">Users: 0</div>
+
+<div id="pixel-draw-app">
+  <div id="colorpicker-row">
+    <span id="colorpicker-label">Color:</span>
+    <input type="color" id="colorpicker" value="#FFFFFF" title="Pick a color">
+    <button class="drawbtn" onclick="fillCanvas()">Fill</button>
   </div>
+  <canvas id="canvas" width="720" height="480"></canvas>
+  <div id="status" class="status-disconnected">Disconnected</div>
+  <div id="user-count">Users: 0</div>
   <div id="buttonbar">
     <button class="drawbtn" onclick="clearScreen()">Clear</button>
     <button class="drawbtn" onclick="undo()">Undo</button>
   </div>
-  <script>
-    let currentColor = "#FFFFFF";
-    let pixels = Array(96*64).fill("#FFFFFF");
-    let changedPixels = [];
-    let history = [];
-    let currentAction = null;
-    let ws;
-    let ready = false;
-    let reconnectTimer = null;
-    let processingOwnUndo = false; // Flag to prevent processing our own undo messages
-    let wsUrl;
+</div>
 
-    const colorpicker = document.getElementById('colorpicker');
-    const statusDiv = document.getElementById('status');
-    const userCountDiv = document.getElementById('user-count');
-
-    colorpicker.addEventListener('input', e => {
-      currentColor = e.target.value;
-    });
-
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    let scale = 7.5; // Will be calculated dynamically
-
-    // Calculate optimal canvas size and scale based on screen size
-    function calculateCanvasSize() {
-        // Use screen.width/height instead of window.innerWidth/Height to avoid zoom issues
-        const screenWidth = window.screen.width;
-        const screenHeight = window.screen.height;
-        
-        // Target canvas dimensions (96x64 pixels)
-        const targetWidth = 96;
-        const targetHeight = 64;
-        
-        // Calculate maximum available space (accounting for UI elements)
-        const maxWidth = Math.min(screenWidth * 0.95, 800); // 95% of screen width, max 800px
-        const maxHeight = Math.min(screenHeight * 0.6, 600); // 60% of screen height, max 600px
-        
-        // Calculate scale that fits within available space
-        const scaleX = maxWidth / targetWidth;
-        const scaleY = maxHeight / targetHeight;
-        const newScale = Math.floor(Math.min(scaleX, scaleY, 12)); // Cap at 12x scale for very large screens
-        
-        // Only update if scale actually changed significantly
-        if (Math.abs(newScale - scale) > 0) {
-            scale = newScale;
-            
-            // Set canvas size
-            canvas.width = targetWidth * scale;
-            canvas.height = targetHeight * scale;
-            
-            // Redraw with new scale
-            redraw();
-            
-            console.log(`Canvas resized: ${canvas.width}x${canvas.height} (scale: ${scale}x)`);
-        }
+<style>
+  #pixel-draw-app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  
+  #canvas {
+    image-rendering: pixelated;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 100%;
+    height: auto;
+    touch-action: none;
+  }
+  
+  #colorpicker-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  #colorpicker-label {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--content);
+  }
+  
+  #colorpicker {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 8px;
+    touch-action: manipulation;
+  }
+  
+  #colorpicker::-webkit-color-swatch {
+    border-radius: 8px;
+    border: 2px solid var(--border);
+  }
+  
+  #colorpicker::-moz-color-swatch {
+    border-radius: 8px;
+    border: 2px solid var(--border);
+  }
+  
+  #buttonbar {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+  
+  .drawbtn {
+    font-size: 1em;
+    padding: 12px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--entry);
+    color: var(--content);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    min-width: 80px;
+    touch-action: manipulation;
+  }
+  
+  .drawbtn:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .drawbtn:active {
+    transform: translateY(0);
+  }
+  
+  #status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9em;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+  
+  .status-connected {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .status-disconnected {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .status-connecting {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+  }
+  
+  #user-count {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #bbdefb;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9em;
+  }
+  
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    #pixel-draw-app {
+      padding: 5px;
     }
-
-    // Initial calculation
-    calculateCanvasSize();
     
-    // Debounced resize handler to avoid excessive recalculations
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            calculateCanvasSize();
-        }, 250); // Wait 250ms after resize stops
-    });
+    #canvas {
+      max-width: 95vw;
+      max-height: 60vh;
+    }
     
-    // Handle orientation changes on mobile
-    window.addEventListener('orientationchange', () => {
-        // Small delay to let the orientation change complete
-        setTimeout(() => {
-            calculateCanvasSize();
-        }, 100);
-    });
-
-    function updateStatus(message, className) {
-      statusDiv.textContent = message;
-      statusDiv.className = `status-${className}`;
+    #colorpicker-row {
+      margin-bottom: 10px;
+      gap: 8px;
     }
-
-    function redraw() {
-      for(let y=0; y<64; y++) for(let x=0; x<96; x++) {
-        ctx.fillStyle = pixels[y*96 + x];
-        ctx.fillRect(x * scale, y * scale, scale, scale);
-      }
+    
+    #colorpicker {
+      width: 35px;
+      height: 35px;
     }
-
-    let drawing = false;
-    function drawPixelAt(x, y) {
-      if (!ready) return;
-      if (x < 0 || x >= 96 || y < 0 || y >= 64) return;
-      ctx.fillStyle = currentColor;
-      ctx.fillRect(x * scale, y * scale, scale, scale);
-      if (pixels[y*96 + x] !== currentColor) {
-        if (currentAction) {
-          currentAction.push({x, y, prevColor: pixels[y*96 + x]});
-        }
-        pixels[y*96 + x] = currentColor;
-        changedPixels.push({x, y, color: currentColor});
-        send();
-      }
+    
+    #colorpicker-label {
+      font-size: 1em;
     }
+    
+    #buttonbar {
+      margin-top: 15px;
+      gap: 8px;
+    }
+    
+    .drawbtn {
+      font-size: 0.9em;
+      padding: 10px 16px;
+      min-width: 70px;
+    }
+    
+    #status {
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 0.85em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #canvas {
+      max-width: 90vw;
+      max-height: 50vh;
+    }
+    
+    .drawbtn {
+      font-size: 0.85em;
+      padding: 8px 12px;
+      min-width: 60px;
+    }
+    
+    #buttonbar {
+      gap: 6px;
+    }
+  }
+</style>
 
-    function getCanvasXY(e) {
-      const rect = canvas.getBoundingClientRect();
-      let clientX, clientY;
+<script>
+  let currentColor = "#FFFFFF";
+  let pixels = Array(96*64).fill("#FFFFFF");
+  let changedPixels = [];
+  let history = [];
+  let currentAction = null;
+  let ws;
+  let ready = false;
+  let reconnectTimer = null;
+  let processingOwnUndo = false; // Flag to prevent processing our own undo messages
+  let wsUrl;
+
+  const colorpicker = document.getElementById('colorpicker');
+  const statusDiv = document.getElementById('status');
+  const userCountDiv = document.getElementById('user-count');
+
+  colorpicker.addEventListener('input', e => {
+    currentColor = e.target.value;
+  });
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let scale = 7.5; // Will be calculated dynamically
+
+  // Calculate optimal canvas size and scale based on screen size
+  function calculateCanvasSize() {
+      // Use screen.width/height instead of window.innerWidth/Height to avoid zoom issues
+      const screenWidth = window.screen.width;
+      const screenHeight = window.screen.height;
       
-      // Handle both mouse and touch events
-      if (e.touches && e.touches.length > 0) {
-        clientX = e.touches[0].clientX;
-        clientY = e.touches[0].clientY;
-      } else if (e.changedTouches && e.changedTouches.length > 0) {
-        clientX = e.changedTouches[0].clientX;
-        clientY = e.changedTouches[0].clientY;
-      } else {
-        clientX = e.clientX;
-        clientY = e.clientY;
-      }
+      // Target canvas dimensions (96x64 pixels)
+      const targetWidth = 96;
+      const targetHeight = 64;
       
-      const x = Math.floor((clientX - rect.left) / scale);
-      const y = Math.floor((clientY - rect.top) / scale);
-      return {x, y};
-    }
-
-    // Mouse events
-    canvas.addEventListener('mousedown', e => {
-      if (!ready) return;
-      drawing = true;
-      currentAction = [];
-      const {x, y} = getCanvasXY(e);
-      drawPixelAt(x, y);
-    });
-    canvas.addEventListener('mousemove', e => {
-      if (!ready) return;
-      if (drawing) {
-        const {x, y} = getCanvasXY(e);
-        drawPixelAt(x, y);
+      // Calculate maximum available space (accounting for UI elements)
+      const maxWidth = Math.min(screenWidth * 0.95, 800); // 95% of screen width, max 800px
+      const maxHeight = Math.min(screenHeight * 0.6, 600); // 60% of screen height, max 600px
+      
+      // Calculate scale that fits within available space
+      const scaleX = maxWidth / targetWidth;
+      const scaleY = maxHeight / targetHeight;
+      const newScale = Math.floor(Math.min(scaleX, scaleY, 12)); // Cap at 12x scale for very large screens
+      
+      // Only update if scale actually changed significantly
+      if (Math.abs(newScale - scale) > 0) {
+          scale = newScale;
+          
+          // Set canvas size
+          canvas.width = targetWidth * scale;
+          canvas.height = targetHeight * scale;
+          
+          // Redraw with new scale
+          redraw();
+          
+          console.log(`Canvas resized: ${canvas.width}x${canvas.height} (scale: ${scale}x)`);
       }
-    });
-    window.addEventListener('mouseup', e => {
-      if (!ready) return;
-      if (drawing && currentAction && currentAction.length > 0) {
-        history.push(currentAction);
-      }
-      drawing = false;
-      currentAction = null;
-    });
-    window.addEventListener('mouseleave', e => {
-      if (!ready) return;
-      if (drawing && currentAction && currentAction.length > 0) {
-        history.push(currentAction);
-      }
-      drawing = false;
-      currentAction = null;
-    });
+  }
 
-    // Touch events with improved handling
-    canvas.addEventListener('touchstart', e => {
-      if (!ready) return;
-      e.preventDefault();
-      drawing = true;
-      currentAction = [];
-      const {x, y} = getCanvasXY(e);
-      drawPixelAt(x, y);
-    }, {passive: false});
-    
-    canvas.addEventListener('touchmove', e => {
-      if (!ready) return;
-      if (drawing) {
-        e.preventDefault();
-        const {x, y} = getCanvasXY(e);
-        drawPixelAt(x, y);
-      }
-    }, {passive: false});
-    
-    canvas.addEventListener('touchend', e => {
-      if (!ready) return;
-      e.preventDefault();
-      if (drawing && currentAction && currentAction.length > 0) {
-        history.push(currentAction);
-      }
-      drawing = false;
-      currentAction = null;
-    }, {passive: false});
-    
-    canvas.addEventListener('touchcancel', e => {
-      if (!ready) return;
-      e.preventDefault();
-      if (drawing && currentAction && currentAction.length > 0) {
-        history.push(currentAction);
-      }
-      drawing = false;
-      currentAction = null;
-    }, {passive: false});
-
-    function send() {
-      if (!ready || changedPixels.length === 0) return;
-
-      const message = {
-        type: "draw",
-        pixels: changedPixels
-      };
-
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify(message));
-        changedPixels = [];
-      }
-    }
-
-    function clearScreen() {
-      if (!ready) return;
-      pixels = Array(96*64).fill("#FFFFFF");
-      redraw();
-      history = [];
-
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({type: "clear"}));
-      }
-    }
-
-    function fillCanvas() {
-      if (!ready) return;
-      // Don't add fill operations to history - they can't be undone
-      pixels = Array(96*64).fill(currentColor);
-      redraw();
-
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({type: "fill", color: currentColor}));
-      }
-    }
-
-    function undo() {
-      if (!ready || history.length === 0) return;
-      processingOwnUndo = true; // Set flag to prevent processing our own undo
-      const lastAction = history.pop();
-      let revertPixels = [];
-      lastAction.forEach(change => {
-        pixels[change.y*96 + change.x] = change.prevColor;
-        revertPixels.push({x: change.x, y: change.y, color: change.prevColor});
-      });
-
-      // Redraw the entire canvas to ensure consistency
-      redraw();
-
-      // Send undo in batches to avoid large messages
-      const batchSize = 50; // Send 50 pixels at a time
-      for (let i = 0; i < revertPixels.length; i += batchSize) {
-        const batch = revertPixels.slice(i, i + batchSize);
-        if (ws && ws.readyState === WebSocket.OPEN) {
-          ws.send(JSON.stringify({
-            type: "draw",
-            pixels: batch
-          }));
-        }
-      }
-
-      // Reset flag after a short delay to allow messages to be processed
+  // Initial calculation
+  calculateCanvasSize();
+  
+  // Debounced resize handler to avoid excessive recalculations
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+          calculateCanvasSize();
+      }, 250); // Wait 250ms after resize stops
+  });
+  
+  // Handle orientation changes on mobile
+  window.addEventListener('orientationchange', () => {
+      // Small delay to let the orientation change complete
       setTimeout(() => {
-        processingOwnUndo = false;
+          calculateCanvasSize();
       }, 100);
+  });
+
+  function updateStatus(message, className) {
+    statusDiv.textContent = message;
+    statusDiv.className = `status-${className}`;
+  }
+
+  function redraw() {
+    for(let y=0; y<64; y++) for(let x=0; x<96; x++) {
+      ctx.fillStyle = pixels[y*96 + x];
+      ctx.fillRect(x * scale, y * scale, scale, scale);
     }
+  }
 
-    function connectWebSocket() {
-      if (reconnectTimer) {
-        clearTimeout(reconnectTimer);
-        reconnectTimer = null;
+  let drawing = false;
+  function drawPixelAt(x, y) {
+    if (!ready) return;
+    if (x < 0 || x >= 96 || y < 0 || y >= 64) return;
+    ctx.fillStyle = currentColor;
+    ctx.fillRect(x * scale, y * scale, scale, scale);
+    if (pixels[y*96 + x] !== currentColor) {
+      if (currentAction) {
+        currentAction.push({x, y, prevColor: pixels[y*96 + x]});
       }
-
-      updateStatus("Connecting...", "connecting");
-
-      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-        // Local dev: connect directly to the Python bridge
-        wsUrl = "ws://localhost:8766";
-      } else {
-        // Production: connect to the Python WebSocket server at dmz.scottlowry.net
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        wsUrl = `${protocol}//dmz.scottlowry.net/pixel-draw`;
-      }
-      
-      console.log("Attempting to connect to WebSocket:", wsUrl);
-      ws = new WebSocket(wsUrl);
-
-      ws.onopen = function() {
-        console.log("WebSocket connected successfully");
-        updateStatus("Connected to Bridge - Checking MCU...", "connecting");
-        // Note: We'll get MCU status separately
-      };
-
-      ws.onmessage = function(event) {
-        console.log("Received WebSocket message:", event.data);
-        try {
-          let data = JSON.parse(event.data);
-
-          if (data.type === "full" && data.pixels) {
-            // Initial state load
-            for (let i = 0; i < data.pixels.length; i++) {
-              pixels[i] = data.pixels[i];
-            }
-            redraw();
-            // Don't set ready here - wait for MCU status
-          } else if (data.type === "mcu_status") {
-            // MCU connection status update
-            if (data.connected) {
-              updateStatus("Connected to MCU", "connected");
-              ready = true;
-            } else {
-              updateStatus("MCU Disconnected", "disconnected");
-              ready = false;
-            }
-          } else if (data.type === "user_count") {
-            // Update user count display
-            userCountDiv.textContent = `Users: ${data.count}`;
-          } else if (data.type === "draw" && data.pixels) {
-            // Pixel updates from other clients (skip if processing our own undo)
-            if (!processingOwnUndo) {
-              data.pixels.forEach(pixel => {
-                let idx = pixel.y * 96 + pixel.x;
-                pixels[idx] = pixel.color;
-                ctx.fillStyle = pixel.color;
-                ctx.fillRect(pixel.x * scale, pixel.y * scale, scale, scale);
-              });
-            }
-          } else if (data.type === "clear") {
-            pixels = Array(96*64).fill("#FFFFFF");
-            redraw();
-          } else if (data.type === "fill" && data.color) {
-            pixels = Array(96*64).fill(data.color);
-            redraw();
-          }
-        } catch (e) {
-          console.error("Error parsing WebSocket message:", e);
-        }
-      };
-
-      ws.onclose = function(event) {
-        console.log("WebSocket closed:", event.code, event.reason);
-        updateStatus("Disconnected - Reconnecting...", "disconnected");
-        ready = false;
-        reconnectTimer = setTimeout(connectWebSocket, 2000);
-      };
-
-      ws.onerror = function(error) {
-        console.error("WebSocket error:", error);
-        updateStatus("Connection Error", "disconnected");
-      };
+      pixels[y*96 + x] = currentColor;
+      changedPixels.push({x, y, color: currentColor});
+      send();
     }
+  }
 
-    // Initialize on page load
-    window.addEventListener('load', () => {
-      connectWebSocket();
+  function getCanvasXY(e) {
+    const rect = canvas.getBoundingClientRect();
+    let clientX, clientY;
+    
+    // Handle both mouse and touch events
+    if (e.touches && e.touches.length > 0) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else if (e.changedTouches && e.changedTouches.length > 0) {
+      clientX = e.changedTouches[0].clientX;
+      clientY = e.changedTouches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+    
+    const x = Math.floor((clientX - rect.left) / scale);
+    const y = Math.floor((clientY - rect.top) / scale);
+    return {x, y};
+  }
+
+  // Mouse events
+  canvas.addEventListener('mousedown', e => {
+    if (!ready) return;
+    drawing = true;
+    currentAction = [];
+    const {x, y} = getCanvasXY(e);
+    drawPixelAt(x, y);
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (!ready) return;
+    if (drawing) {
+      const {x, y} = getCanvasXY(e);
+      drawPixelAt(x, y);
+    }
+  });
+  window.addEventListener('mouseup', e => {
+    if (!ready) return;
+    if (drawing && currentAction && currentAction.length > 0) {
+      history.push(currentAction);
+    }
+    drawing = false;
+    currentAction = null;
+  });
+  window.addEventListener('mouseleave', e => {
+    if (!ready) return;
+    if (drawing && currentAction && currentAction.length > 0) {
+      history.push(currentAction);
+    }
+    drawing = false;
+    currentAction = null;
+  });
+
+  // Touch events with improved handling
+  canvas.addEventListener('touchstart', e => {
+    if (!ready) return;
+    e.preventDefault();
+    drawing = true;
+    currentAction = [];
+    const {x, y} = getCanvasXY(e);
+    drawPixelAt(x, y);
+  }, {passive: false});
+  
+  canvas.addEventListener('touchmove', e => {
+    if (!ready) return;
+    if (drawing) {
+      e.preventDefault();
+      const {x, y} = getCanvasXY(e);
+      drawPixelAt(x, y);
+    }
+  }, {passive: false});
+  
+  canvas.addEventListener('touchend', e => {
+    if (!ready) return;
+    e.preventDefault();
+    if (drawing && currentAction && currentAction.length > 0) {
+      history.push(currentAction);
+    }
+    drawing = false;
+    currentAction = null;
+  }, {passive: false});
+  
+  canvas.addEventListener('touchcancel', e => {
+    if (!ready) return;
+    e.preventDefault();
+    if (drawing && currentAction && currentAction.length > 0) {
+      history.push(currentAction);
+    }
+    drawing = false;
+    currentAction = null;
+  }, {passive: false});
+
+  function send() {
+    if (!ready || changedPixels.length === 0) return;
+
+    const message = {
+      type: "draw",
+      pixels: changedPixels
+    };
+
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify(message));
+      changedPixels = [];
+    }
+  }
+
+  function clearScreen() {
+    if (!ready) return;
+    pixels = Array(96*64).fill("#FFFFFF");
+    redraw();
+    history = [];
+
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({type: "clear"}));
+    }
+  }
+
+  function fillCanvas() {
+    if (!ready) return;
+    // Don't add fill operations to history - they can't be undone
+    pixels = Array(96*64).fill(currentColor);
+    redraw();
+
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({type: "fill", color: currentColor}));
+    }
+  }
+
+  function undo() {
+    if (!ready || history.length === 0) return;
+    processingOwnUndo = true; // Set flag to prevent processing our own undo
+    const lastAction = history.pop();
+    let revertPixels = [];
+    lastAction.forEach(change => {
+      pixels[change.y*96 + change.x] = change.prevColor;
+      revertPixels.push({x: change.x, y: change.y, color: change.prevColor});
     });
-  </script>
-</body>
-</html>
+
+    // Redraw the entire canvas to ensure consistency
+    redraw();
+
+    // Send undo in batches to avoid large messages
+    const batchSize = 50; // Send 50 pixels at a time
+    for (let i = 0; i < revertPixels.length; i += batchSize) {
+      const batch = revertPixels.slice(i, i + batchSize);
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({
+          type: "draw",
+          pixels: batch
+        }));
+      }
+    }
+
+    // Reset flag after a short delay to allow messages to be processed
+    setTimeout(() => {
+      processingOwnUndo = false;
+    }, 100);
+  }
+
+  function connectWebSocket() {
+    if (reconnectTimer) {
+      clearTimeout(reconnectTimer);
+      reconnectTimer = null;
+    }
+
+    updateStatus("Connecting...", "connecting");
+
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      // Local dev: connect directly to the Python bridge
+      wsUrl = "ws://localhost:8766";
+    } else {
+      // Production: connect to the Python WebSocket server at dmz.scottlowry.net
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      wsUrl = `${protocol}//dmz.scottlowry.net/pixel-draw`;
+    }
+    
+    console.log("Attempting to connect to WebSocket:", wsUrl);
+    ws = new WebSocket(wsUrl);
+
+    ws.onopen = function() {
+      console.log("WebSocket connected successfully");
+      updateStatus("Connected to Bridge - Checking MCU...", "connecting");
+      // Note: We'll get MCU status separately
+    };
+
+    ws.onmessage = function(event) {
+      console.log("Received WebSocket message:", event.data);
+      try {
+        let data = JSON.parse(event.data);
+
+        if (data.type === "full" && data.pixels) {
+          // Initial state load
+          for (let i = 0; i < data.pixels.length; i++) {
+            pixels[i] = data.pixels[i];
+          }
+          redraw();
+          // Don't set ready here - wait for MCU status
+        } else if (data.type === "mcu_status") {
+          // MCU connection status update
+          if (data.connected) {
+            updateStatus("Connected to MCU", "connected");
+            ready = true;
+          } else {
+            updateStatus("MCU Disconnected", "disconnected");
+            ready = false;
+          }
+        } else if (data.type === "user_count") {
+          // Update user count display
+          userCountDiv.textContent = `Users: ${data.count}`;
+        } else if (data.type === "draw" && data.pixels) {
+          // Pixel updates from other clients (skip if processing our own undo)
+          if (!processingOwnUndo) {
+            data.pixels.forEach(pixel => {
+              let idx = pixel.y * 96 + pixel.x;
+              pixels[idx] = pixel.color;
+              ctx.fillStyle = pixel.color;
+              ctx.fillRect(pixel.x * scale, pixel.y * scale, scale, scale);
+            });
+          }
+        } else if (data.type === "clear") {
+          pixels = Array(96*64).fill("#FFFFFF");
+          redraw();
+        } else if (data.type === "fill" && data.color) {
+          pixels = Array(96*64).fill(data.color);
+          redraw();
+        }
+      } catch (e) {
+        console.error("Error parsing WebSocket message:", e);
+      }
+    };
+
+    ws.onclose = function(event) {
+      console.log("WebSocket closed:", event.code, event.reason);
+      updateStatus("Disconnected - Reconnecting...", "disconnected");
+      ready = false;
+      reconnectTimer = setTimeout(connectWebSocket, 2000);
+    };
+
+    ws.onerror = function(error) {
+      console.error("WebSocket error:", error);
+      updateStatus("Connection Error", "disconnected");
+    };
+  }
+
+  // Initialize on page load
+  window.addEventListener('load', () => {
+    connectWebSocket();
+  });
+</script>
