@@ -9,7 +9,7 @@ showToc: false
 <div id="pixel-draw-app">
   <div id="colorpicker-row">
     <span id="colorpicker-label">Color:</span>
-    <input type="color" id="colorpicker" value="#000000" title="Pick a color">
+    <input type="color" id="colorpicker" value="#FFFFFF" title="Pick a color">
     <button class="drawbtn" onclick="fillCanvas()">Fill</button>
   </div>
   <canvas id="canvas" width="720" height="480"></canvas>
@@ -210,25 +210,10 @@ showToc: false
       gap: 6px;
     }
   }
-  
-  /* Remove spacing from the article element */
-  article {
-    margin-bottom: 0;
-  }
-  
-  /* Simple fix: just reduce the bottom margin of the post content */
-  .post-content {
-    margin-bottom: 0;
-  }
-  
-  /* Target the main content wrapper */
-  .post {
-    margin-bottom: 0;
-  }
 </style>
 
 <script>
-  let currentColor = "#000000";
+  let currentColor = "#FFFFFF";
   let pixels = Array(96*64).fill("#FFFFFF");
   let changedPixels = [];
   let history = [];
