@@ -334,8 +334,18 @@ showToc: false
       clientY = e.clientY;
     }
     
-    const x = Math.floor((clientX - rect.left) / scale);
-    const y = Math.floor((clientY - rect.top) / scale);
+    // Calculate the scale factor between CSS size and actual canvas size
+    const cssToCanvasScaleX = canvas.width / rect.width;
+    const cssToCanvasScaleY = canvas.height / rect.height;
+    
+    // Convert to canvas coordinates
+    const canvasX = (clientX - rect.left) * cssToCanvasScaleX;
+    const canvasY = (clientY - rect.top) * cssToCanvasScaleY;
+    
+    // Convert to pixel coordinates
+    const x = Math.floor(canvasX / scale);
+    const y = Math.floor(canvasY / scale);
+    
     return {x, y};
   }
 
