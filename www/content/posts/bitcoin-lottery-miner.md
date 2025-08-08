@@ -52,7 +52,7 @@ crw-rw-r-- 1 100000 100000 189, 4 Jun 17 10:09 /dev/bus/usb/001/005
 ```
 Finally I added the following lines to the container's config (`/etc/pve/lxc/107.conf`) now knowing the device major (`189`) and minor (`4`) values:
 ```
-lxc.cgroup.devices.allow: c 189:4 rwm
+lxc.cgroupv2.devices.allow: c 189:4 rwm
 lxc.mount.entry: /dev/bus/usb/001/005 dev/bus/usb/001/005 none bind,optional,create=file
 ```
 
@@ -129,7 +129,7 @@ lxc_config_path="/etc/pve/lxc/107.conf"
 # Update the LXC configuration file
 if [[ -f "$lxc_config_path" ]]; then
     # Update lxc.cgroup.devices.allow line
-    sed -i "s|^lxc.cgroup.devices.allow: c [0-9]\+:[0-9]\+ rwm|lxc.cgroup.devices.allow: c $formatted_major_minor rwm|" "$lxc_config_path"
+    sed -i "s|^lxc.cgroup.devices.allow: c [0-9]\+:[0-9]\+ rwm|lxc.cgroupv2.devices.allow: c $formatted_major_minor rwm|" "$lxc_config_path"
 
     # Update lxc.mount.entry line
     sed -i "s|^lxc.mount.entry: /dev/bus/usb/[0-9]\+/[0-9]\+ .*|lxc.mount.entry: /dev/bus/usb/$bus_number/$device_number dev/bus/usb/$bus_number/$device_number none bind,optional,create=file|" "$lxc_config_path"
