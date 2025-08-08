@@ -129,7 +129,7 @@ lxc_config_path="/etc/pve/lxc/107.conf"
 # Update the LXC configuration file
 if [[ -f "$lxc_config_path" ]]; then
     # Update lxc.cgroup.devices.allow line
-    sed -i "s|^lxc.cgroup.devices.allow: c [0-9]\+:[0-9]\+ rwm|lxc.cgroupv2.devices.allow: c $formatted_major_minor rwm|" "$lxc_config_path"
+    sed -i "s|^lxc.cgroupv2.devices.allow: c [0-9]\+:[0-9]\+ rwm|lxc.cgroupv2.devices.allow: c $formatted_major_minor rwm|" "$lxc_config_path"
 
     # Update lxc.mount.entry line
     sed -i "s|^lxc.mount.entry: /dev/bus/usb/[0-9]\+/[0-9]\+ .*|lxc.mount.entry: /dev/bus/usb/$bus_number/$device_number dev/bus/usb/$bus_number/$device_number none bind,optional,create=file|" "$lxc_config_path"
