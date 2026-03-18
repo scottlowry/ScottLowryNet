@@ -140,4 +140,4 @@ fi
 
 # Final Thoughts
 
-Do I expect to actually mine a block? Hell no. This is just for fun. If I was more serious there's newer USB ASIC devices that run circles around the now ancient Block Erupter. For ~$30 I could use this [NerdMiner 75KH](https://amzn.to/3ZePE3Q) USB ASIC instead which is ~225x faster. It makes more sense to buy $30 of Bitcoin and hold it instead though.
+Do I expect to actually mine a block? Hell no. This is just for fun. If I was more serious there's newer USB ASIC devices that run circles around the now ancient Block Erupter.
